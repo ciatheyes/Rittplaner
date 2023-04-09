@@ -1,0 +1,362 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "name": "Baden in der Thur",
+        "description": "Insbesondere im Sommer ist eine Abkühlung im Fluss sehr willkommen. Die einen planschen gerne, andere liegen sogar ab. Idealerweise sollte das Wasser den Pferden bis über das Vorderfuss-Wurzelgelenk reichen.",
+        "duration": 10,
+        "categories": [
+          "Trinkgelegenheit",
+          "Baden"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.804549654205827,
+          47.583435462112213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "name": "Reitplatz Feldi",
+        "description": "Auf dem Reitplatz bietet sich die Möglichkeit, Bodenarbeit, Dressurübungen oder anderes zu üben, was einen geschlossenen Platz braucht. Allerdings sind nicht alle Pferde gleich begeistert von solchen Übungen.",
+        "duration": 60,
+        "categories": [
+          "Kopfarbeit/Parcours"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.800029625872702,
+          47.578822925208641
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "name": "Bergsteigen (rauf & runter)",
+        "description": "Im Wald gibt es ein kleines \"Tal\" mit relativ steilen Wänden aber keinem Bach. Deshalb eignet sich dieser Ort hervorragend, um \"Bergsteigen\" zu üben, d.h. das Rauf- und Runtergehen in angemessenem Tempo.",
+        "duration": 30,
+        "categories": [
+          "Bergsteigen",
+          "Muskelaufbau"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.803931530673093,
+          47.570613167913386
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "name": "Bergsteigen (steiler Hang)",
+        "description": "Relativ steiler Hang im Wald: Beim Runtergehen übt man, nicht den Hang runterzurennen, beim Raufgehen trainiert es insb. die Muskeln der Hinterhand.",
+        "duration": 5,
+        "categories": [
+          "Bergsteigen",
+          "Muskelaufbau"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.802849814490806,
+          47.572020646291108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "name": "Kleine Weide mit Parcours",
+        "description": "Die Weide mit leichter Neigung gehört dem Fannyhof. Es können Parcours aufgestellt werden, die dann mit den Pferden zu üben sind.",
+        "duration": 40,
+        "categories": [
+          "Kopfarbeit/Parcours",
+          "Spiele"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.778820262155728,
+          47.574861552224796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "name": "Thurgallopp",
+        "description": "Entlang der Thur gibt es auf über 3 km eine mit Grass bewachsene Ebene zwischend dem Thurdam und dem Flussufer. Man kann alles in einem Stück gallopieren oder z.B. Wettrennen machen. Man kann auch anderes üuben, wie z.B. Tempokontrolle oder Gangartwechsel.",
+        "duration": 15,
+        "categories": [
+          "Gallopstrecke",
+          "Kondition"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.783340290488852,
+          47.587813087327334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "name": "Grosse Weide",
+        "description": "Diese Weide auf zwei eher langgezogenen Terassen plus einem Wiesenweg gehört dem Fannyhof. Auf dem Wiesenweg und je nachdem auf der Weide auch können Posten für Pferd und Reiter aufgestellt werden.",
+        "duration": 60,
+        "categories": [
+          "Kopfarbeit/Parcours",
+          "Spiele"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.775806909933642,
+          47.574548799488156
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "name": "Brunnen Altikon",
+        "description": "Der Brunnen ist relativ gross mit einem grösseren und einem kleineren Becken und ist von allen Seiten zugänglich. Im Winter führt er oft kein Wasser.",
+        "duration": 5,
+        "categories": [
+          "Trinkgelegenheit"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.780365570987565,
+          47.574574862287555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "name": "Hof mit bellendem Hund",
+        "description": "Auf dem Hof lebt ein manchmal freilaufender bellender Wachhund, vor dem manche Pferde unter Umständen sehr Respekt haben. Zudem gibt es auch einen Pferdestall.",
+        "duration": 2,
+        "categories": [
+          "Schwierige Orte"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.787802369740785,
+          47.573206547782775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "name": "Gefährlicher Hof",
+        "description": "Der Hof wirkt oft relativ verlassen und es stehen oft \"unheimliche\" Dinge herum (z.B. mit Blachen abgedeckte Dinge, Traktoren). Viele Pferde gehen nicht gerne an diesem Hof vorbei.",
+        "duration": 3,
+        "categories": [
+          "Schwierige Orte"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.778018633199213,
+          47.569010160355923
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11,
+        "name": "Brunnen Oberherten",
+        "description": "Ein relativ grosser Brunnen in einem kleinen Weiler, der von vorne (Längsseite) und der Seite zugänglich ist. Im Winter führt er oft kein Wasser.",
+        "duration": 5,
+        "categories": [
+          "Trinkgelegenheit"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.799020346041909,
+          47.567260480253445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12,
+        "name": "Brunnen Schneit",
+        "description": "Ein relativ grosser Brunnen, der aber unter einem grossen Baum steht. Darum ist er nur von einer Längsseite und von unten zugänglich. Im Winter führt er oft kein Wasser.",
+        "duration": 5,
+        "categories": [
+          "Trinkgelegenheit"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.781408654449056,
+          47.579849054369632
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13,
+        "name": "Waldhütte mit grossem Kiesplatz",
+        "description": "Auf dem grossen Kiesplatz vor der Waldhütte lassen sich gut Spiele spielen, wie z.B. Zeitunglesen. Auch Volten-üben oder Im-Kreis-gehen ist möglich.",
+        "duration": 20,
+        "categories": [
+          "Spiele"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.769307,
+          47.581989
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14,
+        "name": "Gallopstrecke am Berg",
+        "description": "Ein Kiesweg am Hang wurde extra zur Gallopstrecke präpariert (Sandstreifen in der Mitte). Man kommt auch einfach und schnell wieder zum Start, man kann die Strecke also mehrmals hintereinander machen.",
+        "duration": 14,
+        "categories": [
+          "Gallopstrecke",
+          "Muskelaufbau",
+          "Kondition"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.802465,
+          47.562924
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 15,
+        "name": "Weicher Weg mit bewachsenem Mittelstreifen",
+        "description": "Auf dem Mittelstreifen und ggf. auch im Grasstreifen neben dem Weg kann gallopiert werden. Die Strecke ist ca. 240 m lang",
+        "duration": 5,
+        "categories": [
+          "Gallopstrecke"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.767047,
+          47.571623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 16,
+        "name": "Wiesenweg am Bach",
+        "description": "Ein ca. 330 m langer Wiesenweg an einem Bach entlang. Zwischen Start und Ende ist kein Sichtkontakt möglich. Es bietet sich also an, Einzelgallop zu üben.",
+        "duration": 5,
+        "categories": [
+          "Gallopstrecke"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.797102,
+          47.574238
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17,
+        "name": "Wiesenweg am Bach",
+        "description": "Ein ca. 400 m langer gerader Wiesenweg an einem Bach entlang.",
+        "duration": 5,
+        "categories": [
+          "Gallopstrecke"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.757459,
+          47.580832
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18,
+        "name": "Weicher Weg mit bewachsenem Mittelstreifen und Steigung",
+        "description": "Ein ca. 400 m langer Weg, auf dem auf dem Mittelstreifen gallopiert werden kann (nur hinauf). Die Steigung fördert den Muskelaufbau.",
+        "duration": 7,
+        "categories": [
+          "Gallopstrecke",
+          "Muskelaufbau"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.763039,
+          47.569378
+        ]
+      }
+    }
+  ]
+}

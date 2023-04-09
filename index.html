@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<!-- primary language of the webpage is German because it's tha main language of the target group -->
+<!-- exception: sources, because these are directed at the supervisors of the project this webpage was created for -->
+<html lang="de">
+<head>
+    <!-- metadata -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <!-- website title -->
+    <title>Rittplaner - Reitgebiet Fannyhof</title>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="lib/range-slider/css/bootstrap-slider.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <!-- js scripts (2 more at the very bottom of the file)-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="lib/range-slider/bootstrap-slider.js"></script>
+    <script src="lib/gmaps-marker-clusterer/markerclusterer.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsNWpI62d5N5SAA-fq3XWzsNTn-swfz48&callback=initMap"></script>
+    <script src="js/map.js"></script>
+
+</head>
+<body>
+
+<!-- header of the webpage -->
+<header class="bar">
+    <!-- webpage title -->
+    <div>
+        <!-- webpage title -->
+        <span id="webpage-title">Rittplaner</span>
+        <!-- webpage subtitle -->
+        <span id="webpage-subtitle">Reitgebiet um den Fannyhof in Altikon</span>
+    </div>
+    <!-- button for toggling the about popup -->
+    <button onclick="togglePopup('about')">
+        <!-- icon for slim screens -->
+        <i class="fas fa-question" title="&Uuml;ber diese Webseite"></i>
+        <!-- text for wider screens -->
+        <span>&Uuml;ber diese Webseite</span>
+    </button>
+    <!-- button for toggling the imprint popup -->
+    <button onclick="togglePopup('imprint')">
+        <!-- icon for slim screens -->
+        <i class="fas fa-align-right" title="Impressum"></i>
+        <!-- text for wider screens -->
+        <span>Impressum</span>
+    </button>
+</header>
+
+<!-- main part of the webpage containing the map, the map control panel (incl. navigation bar), and the popups -->
+<section>
+    <!-- about popup (visible on load) -->
+    <div id="about" class="popup" style="display: flex">
+        <!-- header of the about popup -->
+        <div class="panel-header bar">
+            <!-- header text -->
+            <div>&Uuml;ber diese Webseite</div>
+            <!-- button for closing the popup -->
+            <button onclick="this.parentElement.parentElement.style.display='none'"><i class="fas fa-times"></i>
+            </button>
+        </div>
+        <!-- content of the about popup -->
+        <div class="content-container">
+            <!-- paragraph about the stable Fannyhof and the purpose/aim of this webpage -->
+            <p>
+                Der <a href="http://www.fannyhof.ch/" title="Link zur Website des Reithofes"
+                       target="_blank">Fannyhof</a>
+                ist ein Reithof, der neben Heilpädagogischem Reiten auch gewöhnliche Ausreitgruppen für die ReiterInnen
+                anbietet. Je nach Wetter, Jahreszeit, Anzahl ReiterInnen etc. gibt es verschiedenste Aktivitäten, die
+                auf so einem Ausritt unternommen werden können. Eine Auswahl dieser Aktivitäten sollen mithilfe der
+                Karte auf dieser Webseite erläutert werden.<br>
+                Zudem besteht die Möglichkeit, einen Rundweg vom Hof aus zu einer Auswahl von Aktivitäten zu berechnen.
+            </p>
+
+            <br><br>
+
+            <!-- instructions on how to use/navigate this webpage -->
+            <p class="bold">Navigation - Wie bediene ich diese Karte?</p>
+            <!-- paragraph about the interaction possibilities of the activity markers in the map and the connection to
+                 the info tab -->
+            <p>
+                Jeder rote Pin auf der Karte stellt eine Aktivität dar. Klickt man darauf, werden im
+                <span class="bold">Informations-Tab</span> auf der linken Seite Informationen zur angewählten Aktivität
+                aufgeführt.<br>
+                Sind mehrere Aktivitäten nahe beieinander, so werden sie als roter Kreis dargestellt. Die Anzahl der
+                damit zusammengefassten Aktivitäten steht dann in der Mitte des Kreises.
+            </p>
+            <!-- paragraph about categories tab -->
+            <p>
+                Die Aktivitäten sind verschiedenen Kategorien zugeordnet. Diese sind im
+                <span class="bold">Kategorien-Tab</span> aufgelistet. Klickt man auf eine Kategorie und entfernt damit
+                das Häckchen, so werden auf der Karte die Aktivitäten dieser Kategorie entfernt. Setzt man das Häckchen
+                wieder, werden sie auf der Karte wieder hinzugefügt.<br>
+                Eine Aktivität kann mehreren Kategorien zugeschrieben sein.
+            </p>
+            <!-- paragraph about the routing tab -->
+            <p>
+                Schliesslich kann über das <span class="bold">Wegberechnungs-Tab</span> der kürzeste Weg zu einer
+                Auswahl von Aktivitäten berechnet und auf der Karte dargestellt werden. Damit man einen Weg berechnen
+                kann muss mindestens eine Aktivität ausgewählt werden (durch Anklicken auf der Karte. Ausserdem kann
+                man angeben, welche Prozentanteile des Rittes man im Schritt, Trab und Gallop verbringt und jeweils mit
+                welcher Geschwindigkeit. Für diese Werte können aber auche infach die Vorgabewerte verwendet werden.
+            </p>
+            <!-- instructions on how to get to the map control panels -->
+            <p>
+                Die verschiedenen Tabs sind über die Navigationsspalte ganz links erreichbar und können mit dem Pfeil
+                oben rechts neben der Überschrift wieder geschlossen werden.
+            </p>
+        </div>
+    </div>
+
+    <!-- imprint popup (hidden on load) -->
+    <div id="imprint" class="popup" style="display: none">
+        <!-- header of the imprint popup -->
+        <div class="panel-header bar">
+            <!-- header text -->
+            <div>Impressum</div>
+            <!-- button for closing the popup -->
+            <button onclick="this.parentElement.parentElement.style.display='none'"><i class="fas fa-times"></i>
+            </button>
+        </div>
+        <!-- content of the imprint popup -->
+        <div class="content-container">
+            <!-- paragraph about the framework/project this website was created for -->
+            <p>
+                Diese Webseite wurde als &Uuml;bung im Rahmen einer Vorlesung an der ETH Z&uuml;rich erstellt. Genauere
+                Angaben inkl. Kontakadresse sind unten aufgelistet.
+            </p>
+            <!-- project coordinates -->
+            <table>
+                <!-- project -->
+                <tr>
+                    <td class="align-top">Projektrahmen:</td>
+                    <td>Vorlesung "Cartography III Fall Semester 2018"</td>
+                </tr>
+                <!-- institution -->
+                <tr>
+                    <td class="align-top">Institution:</td>
+                    <td>Institut f&uuml;r Kartografie und Geoinformation, ETH Z&uuml;rich</td>
+                </tr>
+                <!-- author -->
+                <tr>
+                    <td class="align-top">Autor:</td>
+                    <td><a href="mailto:khenggel@student.ethz.ch?Subject=Webseite Rittplaner" target="_top">Katharina
+                        Henggeler <i class="fas fa-envelope"></i></a></td>
+                </tr>
+                <!-- supervisor -->
+                <tr>
+                    <td class="align-top">Betreuer:</td>
+                    <td>Prof. Dr. Lorenz Hurni</td>
+                </tr>
+                <!-- assistants -->
+                <tr>
+                    <td class="align-top">Assistenten:</td>
+                    <td>Charis Gkonos, Dr. Magnus Heitzler, Dr. Hans-Rudolf Bär, Dr. René Sieber</td>
+                </tr>
+                <!-- submission date -->
+                <tr>
+                    <td class="align-top">Abgabedatum:</td>
+                    <td>19. November 2018</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- sources popup (hidden on load) -->
+    <div id="sources" class="popup" style="display: none">
+        <!-- header of the sources popup -->
+        <div class="panel-header bar">
+            <!-- header text -->
+            <div>Quellen / Sources</div>
+            <!-- button for closing the popup -->
+            <button onclick="this.parentElement.parentElement.style.display='none'"><i class="fas fa-times"></i>
+            </button>
+        </div>
+        <!-- content of the sources popup -->
+        <div class="content-container">
+            <p>
+                Die Quellen, die zum Erstellen dieser Webseite verwendet wurden, sind unten aufgeführt.<br>
+                Sources used to implement this webpage are listed below.
+            </p>
+            <table>
+                <!-- location icons -->
+                <tr>
+                    <td class="align-top">Location icons:</td>
+                    <td>Adapted from
+                        <a href="http://www.freepik.com" title="Freepik" target="_blank">Freepik</a> at
+                        <a href="https://www.flaticon.com/" title="Flaticon" target="_blank">www.flaticon.com</a>
+                        (licensed by
+                        <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+                           target="_blank">
+                            CC 3.0 BY</a>).
+                    </td>
+                </tr>
+                <!-- other icons -->
+                <tr>
+                    <td class="align-top">Other icons:</td>
+                    <td>By <a href="https://fontawesome.com/icons?d=gallery" target="_blank">Font Awesome</a>.</td>
+                </tr>
+                <!-- sources used to implement the map -->
+                <tr>
+                    <td class="align-top">Map:</td>
+                    <td>Created with the
+                        <a href="https://developers.google.com/maps/documentation/javascript/tutorial" target="_blank">
+                            Google Maps JavaScript API</a> and a
+                        <a href="https://github.com/gmaps-marker-clusterer/gmaps-marker-clusterer" target="_blank">
+                            Marker Clustering Library</a>
+                        (adapted using a
+                        <a href="https://mono.software/2017/12/29/google-maps-marker-clustering/" target="_blank">
+                            post by Krunoslav Peulic</a>)
+                    </td>
+                </tr>
+                <!-- sources used to implement the sliders -->
+                <tr>
+                    <td class="align-top">Sliders:</td>
+                    <td>Created with the
+                        <a href="https://www.jqueryscript.net/form/Highly-Customizable-Range-Slider-Plugin-For-Bootstrap-Bootstrap-Slider.html"
+                           target="_blank">
+                            Bootstrap Slider Plugin</a>.
+                    </td>
+                </tr>
+                <!-- data source -->
+                <tr>
+                    <td class="align-top">Data:</td>
+                    <td>From personal experience.</td>
+                </tr>
+                <!-- picture sources -->
+                <tr>
+                    <td class="align-top">Pictures:</td>
+                    <td>Most by Katharina Henggeler, some from
+                        <a href="https://www.google.ch/maps/search/maps+google/@47.5727874,8.7673672,13.7z"
+                           target="_blank">
+                            Google Street View</a>
+                        (marked as such in the picture).
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- map control panel (incl. navigation bar) -->
+    <div id="map-control">
+        <!-- navigation bar on the very left of the map -->
+        <div id="navbar">
+            <!-- button representing the information tab -->
+            <button id="tab-info" onclick="onNavButtonClicked('info')">
+                <!-- tab icon -->
+                <i class="fas fa-info" title="Information"></i>
+                <!-- tab text -->
+                <div>Information</div>
+            </button>
+            <!-- button representing the categories tab -->
+            <button id="tab-categories" onclick="onNavButtonClicked('categories')">
+                <!-- tab icon -->
+                <i class="fas fa-layer-group" title="Kategorien"></i>
+                <!-- tab text -->
+                <div>Kategorien</div>
+            </button>
+            <!-- button representing the routing tab -->
+            <button id="tab-routing" onclick="onNavButtonClicked('routing')">
+                <!-- tab icon -->
+                <i class="fas fa-route" title="Wegberechnung"></i>
+                <!-- tab text -->
+                <div>Wegberechnung</div>
+            </button>
+        </div>
+
+        <!-- collapsible panels for map control: -->
+        <!-- info panel -->
+        <div id="info" class="panel" style="display: none">
+            <!-- header of the info panel -->
+            <div class="panel-header bar">
+                <!-- header text -->
+                <div>Informationen zur aktuellen Auswahl</div>
+                <!-- button for collapsing the panel -->
+                <button onclick="onNavButtonClicked('info')"><i class="fas fa-angle-left"></i></button>
+            </div>
+            <!-- content of the info panel -->
+            <div class="content-container">
+                <!-- default text for when no activity is selected -->
+                <div id="feature-info-default-message">
+                    <p>
+                        Zurzeit ist nichts ausgewählt.<br>
+                        Klicken Sie auf einen der Pins in der Karte, um hier Informationen dazu anzuzeigen.
+                        (Gegebenenfalls müssen zuerst unter "WEGBERECHNUNG" auf "Auswahl löschen"
+                        klicken.)
+                    </p>
+                </div>
+                <div id="feature-info">
+                    <!-- placeholder for the name of the selected feature -->
+                    <p id="feature-info-name" class="bold"></p>
+                    <!-- placeholder for the description of the selected feature -->
+                    <p id="feature-info-description"></p>
+
+                    <p>Vermutlich dafür aufzuwendende Zeit: <span class="bold">ca.
+                        <!-- placeholder for the duration of the selected feature -->
+                    <span id="feature-info-duration"></span>
+                    min</span></p>
+                    <p>Kategorien:
+                        <!-- placeholder for the categories of the selected feature -->
+                        <span id="feature-info-cat"></span>
+                    </p>
+                    <!-- placeholder for the image of the selected feature -->
+                    <div id="feature-info-img"></div>
+                </div>
+            </div>
+        </div>
+        <!-- categories panel -->
+        <div id="categories" class="panel" style="display: none">
+            <!-- header of the categories panel-->
+            <div class="panel-header bar">
+                <!-- header text -->
+                <div>Kategorien</div>
+                <!-- button for collapsing the panel -->
+                <button onclick="onNavButtonClicked('categories')"><i
+                        class="fas fa-angle-left"></i></button>
+            </div>
+            <!-- content of the categories panel -->
+            <div class="content-container">
+                <!-- additional message when disabled -->
+                <div id="cat-disabled-message">
+                    <p>
+                        Dieser Bereich ist deaktiviert. Um ihn wieder zu aktivieren, müssen Sie zuerst unter
+                        "WEGBERECHNUNG" den berechneten Weg wieder löschen.
+                    </p>
+                </div>
+                <!-- visible content when enabled -->
+                <div id="cat-content">
+                    <!-- instructions on how to use the list of checkboxes -->
+                    <p>
+                        Wenn das Häckchen einer Kategorie entfernt wird (durch darauf klicken), dann werden alle
+                        Aktivitäten
+                        dieser Kategorie auf der Karte ausgeblendet. Handkehrum werden alle Aktivitäten einer Kategorie
+                        eingeblendet, wenn bei dieser Kategorie ein Häckchen gesetzt wird.
+                    </p>
+                    <!-- list of categories with checkboxex -->
+                    <div>
+                        <div>
+                            <label class="checkbox-label">
+                                <!-- checkbox -->
+                                <input id="cat-climbing" type="checkbox"
+                                       onchange="onCatCheckboxChanged(this, 'Bergsteigen')" checked/>
+                                <!-- category name -->
+                                Bergsteigen
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox-label">
+                                <!-- checkbox -->
+                                <input id="cat-canter" type="checkbox"
+                                       onchange="onCatCheckboxChanged(this, 'Gallopstrecke')" checked/>
+                                <!-- category name -->
+                                Gallopstrecke
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox-label">
+                                <!-- checkbox -->
+                                <input id="cat-drinking-spot" type="checkbox"
+                                       onchange="onCatCheckboxChanged(this, 'Trinkgelegenheit')" checked/>
+                                <!-- category name -->
+                                Trinkgelegenheit
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox-label">
+                                <!-- checkbox -->
+                                <input id="cat-brainwork" type="checkbox"
+                                       onchange="onCatCheckboxChanged(this, 'Kopfarbeit/Parcours')" checked/>
+                                <!-- category name -->
+                                Kopfarbeit/Parcours
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox-label">
+                                <!-- checkbox -->
+                                <input id="cat-games" type="checkbox"
+                                       onchange="onCatCheckboxChanged(this, 'Spiele')" checked/>
+                                <!-- category name -->
+                                Spiele
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox-label">
+                                <!-- checkbox -->
+                                <input id="cat-muscles" type="checkbox"
+                                       onchange="onCatCheckboxChanged(this, 'Muskelaufbau')" checked/>
+                                <!-- category name -->
+                                Muskelaufbau
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox-label">
+                                <!-- checkbox -->
+                                <input id="cat-stamina" type="checkbox"
+                                       onchange="onCatCheckboxChanged(this, 'Kondition')" checked/>
+                                <!-- category name -->
+                                Kondition
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox-label">
+                                <!-- checkbox -->
+                                <input id="cat-difficulties" type="checkbox"
+                                       onchange="onCatCheckboxChanged(this, 'Schwierige Orte')" checked/>
+                                <!-- category name -->
+                                Schwierige Orte
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- dividing line -->
+                    <hr>
+
+                    <!-- hint on how the results of checking/unchecking categories
+                        (translation of the last paragraph in the function description of the "onCatCheckboxChanged" function) -->
+                    <p>
+                        Tipp:<br>
+                        Da eine Aktivität mehreren Kategorien angehören kann, muss man eine Kategorie zuerst ausblenden
+                        und dann wieder einblenden, um sicher zu stellen will, dass wirklich alle Aktivitäten
+                        dieser Kategorie angezeigt werden.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- routing panel -->
+        <div id="routing" class="panel" style="display: none">
+            <!-- header of the routing panel -->
+            <div class="panel-header bar">
+                <!-- header text -->
+                <div>Schnellster Weg berechnen</div>
+                <!-- button for collapsing the panel -->
+                <button onclick="onNavButtonClicked('routing')"><i
+                        class="fas fa-angle-left"></i></button>
+            </div>
+            <!-- content of the routing panel -->
+            <div class="content-container">
+                <div id="routing-controls">
+                    <!-- activities selection toggle -->
+                    <!-- paragraph on how the selection mode toggling works -->
+                    <p>
+                        Clicken Sie auf "Aktivit&auml;ten ausw&auml;hlen" und w&auml;hlen Sie dann auf der Karte die
+                        Aktivit&auml;ten aus (durch Anklicken in der Karte), die Sie auf dem Ritt besuchen
+                        m&ouml;chten:
+                    </p>
+                    <div>
+                        <!-- button for toggeling the selection mode -->
+                        <button id="select-activities" class="button-control" onclick="toggleSelectionMode()">
+                            Aktivit&auml;ten ausw&auml;hlen
+                        </button>
+                        <!-- selection count -->
+                        <span id="activities-count" class="bold">0</span> Aktivit&auml;ten ausgew&auml;hlt
+                    </div>
+
+
+                    <hr>
+
+                    <!-- percentages of speed types walk, trot, and canter -->
+                    <!-- paragraph on what to do with the slider below -->
+                    <p>
+                        Geben Sie an, welche Prozentanteile des Rittes Sie planen, im Schritt, Trab resp. Gallop
+                        zur&uuml;ckzulegen:
+                    </p>
+                    <!-- percentages slider -->
+                    <input id="percentages-speed" type="range"/>
+                    <!-- labels for displaying the percentages -->
+                    <div id="percentage-labels-container">
+                        <!-- walk percentage -->
+                        <div>Schritt: <label id="walk-percentage-text" class="percentage-labels">75</label> %</div>
+                        <!-- trot percentage -->
+                        <div>Trab: <label id="trot-percentage-text" class="percentage-labels">20</label> %</div>
+                        <!-- canter percentage -->
+                        <div>Gallop: <label id="canter-percentage-text" class="percentage-labels">5</label> %</div>
+                    </div>
+
+                    <!-- dividing line -->
+                    <hr>
+
+                    <!-- assumed speed of the respective speed types -->
+                    <!-- paragraph on what to do with the sliders below -->
+                    <p>Geben Sie an, wie schnell Sie in den jeweiligen Gangarten etwa unterwegs sind:</p>
+                    <table>
+                        <!-- walk speed -->
+                        <tr>
+                            <!-- label -->
+                            <td><label for="walk-speed">Schritt:</label></td>
+                            <!-- slider input -->
+                            <td><input id="walk-speed" type="text"/></td>
+                            <!-- linked input textfield -->
+                            <td><input id="walk-speed-text" type="number" min="0" max="50" step="1" value="6"
+                                       onchange="setSliderValue('walk-speed', this.value)"/> km/h
+                            </td>
+                        </tr>
+                        <!-- trot speed -->
+                        <tr>
+                            <!-- label -->
+                            <td><label for="trot-speed">Trab:</label></td>
+                            <!-- slider input -->
+                            <td><input id="trot-speed" type="text"/></td>
+                            <!-- linked input textfield-->
+                            <td><input id="trot-speed-text" type="number" min="0" max="50" step="1" value="15"
+                                       onchange="setSliderValue('trot-speed', this.value)"/> km/h
+                            </td>
+                        </tr>
+                        <!-- canter speed -->
+                        <tr>
+                            <!-- label -->
+                            <td><label for="canter-speed">Gallop:</label></td>
+                            <!-- slider input -->
+                            <td><input id="canter-speed" type="text"/></td>
+                            <!-- linked input textfield -->
+                            <td><input id="canter-speed-text" type="number" min="0" max="50" step="1" value="25"
+                                       onchange="setSliderValue('canter-speed', this.value)"/> km/h
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- dividing line -->
+                    <hr>
+
+                    <!-- container for the routing button (needed to have the routing button right-aligned) -->
+                    <div class="right-button-container">
+                        <!-- routing button -->
+                        <button id="routing-button" class="button-control" onclick="calculateAndDisplayRoute()"
+                                disabled>
+                            Weg berechnen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- route information display -->
+                <div id="route-info">
+                    <p id="route-info-title" class="bold">Informationen zum berechneten Weg</p>
+                    <table>
+                        <!-- distance of the calculated trip/route -->
+                        <tr>
+                            <!-- label -->
+                            <td>Wegdistanz:</td>
+                            <!-- placeholder for the distance value -->
+                            <td id="route-distance"></td>
+                        </tr>
+                        <!-- duration of the calculated trip/route -->
+                        <tr>
+                            <!--label -->
+                            <td>Dauer:</td>
+                            <!-- placeholder for the duration value -->
+                            <td id="route-duration"></td>
+                        </tr>
+                        <!-- visited activities of the calculated trip/route -->
+                        <tr>
+                            <!-- label -->
+                            <td>Anzahl besuchte Aktivitäten:</td>
+                            <!-- placeholder for the activities count -->
+                            <td id="route-activities"></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <!-- container for the clear-route button (needed to have the clear-route button right-aligned) -->
+                    <div class="right-button-container">
+                        <!-- button to clear the calculate trip/route -->
+                        <button class="button-control" onclick="clearRoute()">Weg l&ouml;schen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- container to hold the map -->
+    <div id="map-canvas"></div>
+</section>
+
+<!-- footer of the webpage -->
+<footer class="bar">
+    <!-- credits declaration -->
+    <div>© Katharina Henggeler 2018</div>
+    <!-- button for toggling the sources popup (has no icon for slim screens) -->
+    <button id="sources-button" onclick="togglePopup('sources')">Quellen / Sources</button>
+</footer>
+
+<!-- js scripts -->
+<script src="js/navigation.js"></script>
+<script src="js/sliders.js"></script>
+
+</body>
+</html>
+

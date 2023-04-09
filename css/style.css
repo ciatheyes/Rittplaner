@@ -1,0 +1,515 @@
+:root {
+    /* GUI concept colors */
+    --color-A: rgb(252, 229, 203);
+    --gradAB-Q1: rgb(242, 209, 176);
+    --gradAB-Q2: rgb(233, 189, 150);
+    --gradAB-Q3: rgb(223, 169, 125);
+    --color-B: rgb(214, 148, 102);
+    --gradBC-Q1: rgb(191, 126, 77);
+    --gradBC-Q2: rgb(168, 104, 53);
+    --gradBC-Q3: rgb(145, 83, 28);
+    --color-C: rgb(122, 63, 0);
+    --auto: black;
+    --accent-color-light: rgb(242, 242, 242);
+    --accent-color-light-transparent: rgba(242, 242, 242, 0.85);
+
+    /* map colors (unused in this CSS file but noted here for reference) */
+    --map-icon: #c13f11;
+    --map-icon-selected: #770114;
+    --map-icon-fannyhof: #5b2f00;
+    --map-icon-fannyhof-selected: #3d1f00;
+}
+
+
+/* -------------------------------------------------------------------- */
+/* G E N E R A L   S T Y L E S                                          */
+/* -------------------------------------------------------------------- */
+
+html {
+    height: 100%;
+    color: var(--auto);
+}
+body {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    font-family: sans-serif;
+    cursor: default;
+}
+
+/* all text paragraphs */
+p {
+    padding: 0 0.7em 0 0;
+}
+
+/* line breaks */
+hr {
+    border-color: var(--gradBC-Q1);
+}
+
+/* general button style */
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0.5em 0.7em;
+}
+button:hover {
+    cursor: pointer;
+}
+button:disabled {
+    cursor: default;
+}
+button:focus {
+    outline: none;  /* remove blue outline */
+}
+
+/* checkbox style */
+input[type=checkbox] {  /* the checkbox itself */
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--accent-color-light);
+    border-radius: 3px;
+    padding: 0 0.3em;
+    height: 1em;
+    width: 1em;
+    margin-right: 0.7em;
+    display: inline-block;
+    position: relative;
+}
+input[type=checkbox]:checked:after {    /* checkbox tick */
+    content: '\2714';
+    position: absolute;
+    font-size: 1.5em;
+    top: -0.6em;
+    left: 0;
+    color: var(--gradBC-Q3);
+}
+input[type=checkbox]:hover, .checkbox-label:hover { /* style for checkbox and its label if on hover */
+    cursor: pointer;
+}
+input[type=checkbox]:focus {    /* style for checkbox if in focus */
+    outline: none;  /* remove blue outline */
+}
+input[type=checkbox]:disabled { /* style for the checkbox itself if disabled */
+    cursor: default;
+    border-color: var(--gradBC-Q1);
+}
+input[type=checkbox]:checked:after:disabled {   /* style for the checkbox tick if disabled */
+    color: var(--gradBC-Q1);
+}
+
+/* style for text fields for entering numbers */
+input[type=number] {
+    background-color: transparent;
+    border: 1px solid var(--accent-color-light);
+    border-radius: 3px;
+    padding: 0 0.3em;
+    width: 35px;
+    text-align: right;
+    font-weight: bold;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { /* hide spin-buttons */
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* general style for sliders (according to the Bootstrap Slider Plugin) */
+.slider-track {
+    background: var(--accent-color-light);
+}
+.slider-handle {
+    background-image: linear-gradient(to bottom, var(--gradBC-Q3) 0%, var(--color-C) 100%);
+}
+
+/* hyperlink style */
+a:link {
+    color: var(--color-C);
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: var(--color-C);
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: var(--color-C);
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: var(--color-C);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+/* style for scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+    padding-right: 0;
+    margin-right: 0;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--gradBC-Q3);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-C);
+}
+
+/* style for tables (used for layout purposes) */
+table {
+    border-spacing: 0;
+}
+table td {
+    padding: 0.2em 1em 0.2em 0;
+}
+table td:nth-child(1) {
+    white-space: nowrap;    /* no line wrap in first column */
+}
+
+/* style for images (i.e. have them fill the parent's width) */
+img {
+    width: 100%;
+}
+
+/* style for bold text */
+.bold {
+    font-weight: bold;
+}
+
+/* aligns element to the top (only applicable within a layout) */
+.align-top {
+    vertical-align: top;
+}
+
+/* style for a container element whose children elements are right-aligned */
+.right-button-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+}
+
+/* style for a bar with a header-text (div) to the left and buttons to the right */
+.bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.bar div {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+    padding-left: 10px;
+}
+.bar button {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+
+
+/* -------------------------------------------------------------------- */
+/* S T R U C T U R E - S P E C I F I C   S T Y L E S                    */
+/* -------------------------------------------------------------------- */
+
+/* main page parts: header, section, and footer                         */
+/* -------------------------------------------------------------------- */
+
+/* style of the header container */
+header {
+    background-color: var(--color-A);
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    color: var(--color-C);
+}
+
+/* style of the section container */
+section {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    position: relative;
+}
+
+/* style of the footer container */
+footer {
+    z-index: 100;
+    background-color: var(--color-A);
+}
+
+/* style for the buttons in header and footer */
+header button:hover, footer button:hover {
+    background-color: var(--gradAB-Q1);
+}
+header button {
+    padding: 1.3em 0.7em;   /* special padding to match the header text */
+}
+
+/* style for the icons in the header */
+header .fas {
+    display: none;  /* hide it on load */
+    font-size: 1.3em;
+}
+
+/* styles for the title text in the header */
+#webpage-title {
+    font-size: 2.4em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: "Comic Sans MS", sans-serif;
+}
+#webpage-subtitle {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* container elements within the section element                        */
+/* -------------------------------------------------------------------- */
+
+/* style for the div containing the map */
+#map-canvas {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* style for the entire container containing all the map controls */
+#map-control {
+    z-index: 100;   /* displays on top of the map */
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: row;
+}
+
+/* style for the container divs of the popups */
+.popup {
+    z-index: 101;   /* displays above the map-control elment */
+    background-color: var(--accent-color-light-transparent);
+    position: absolute;
+    bottom: 10em;
+    top: 10em;
+    left: 15em;
+    right: 15em;
+    display: none;  /* hide popus on load by default */
+    flex-flow: column;
+    max-width: 55em;
+    border: 2px solid var(--accent-color-light);
+    border-radius: 3px;
+}
+
+/* style for the panels in the map-control container */
+.panel {
+    background-color: var(--color-B);
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-flow: column;
+    width: 410px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+}
+
+/* styles for the navigation bar                                        */
+/* -------------------------------------------------------------------- */
+
+/* style for the container */
+#navbar {
+    background-color: var(--gradBC-Q1);
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-flow: column;
+}
+
+/* style for the actual/clickable elements of the tabs (buttons) */
+#navbar button {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+#navbar button:hover {
+    background-color: var(--gradBC-Q2);
+}
+
+/* style for the icons */
+#navbar .fas {
+    font-size: 2.3em;
+    padding: 10px 0 10px 0;
+}
+
+/* style for the text */
+#navbar div {
+    font-size: 1.3em;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    /* vertical text alignment */
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+}
+
+/* styles for panels/popups                                             */
+/* -------------------------------------------------------------------- */
+
+/* style for container of the the header of a panel/popup */
+.panel-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    color: var(--color-C);
+    border-bottom: 1px solid var(--gradBC-Q3);
+}
+
+/* style for the container of all the content of a panel/popup */
+.content-container {
+    padding: 10px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-flow: column;
+    overflow-y: auto;
+}
+
+/* style for buttons in the panle/popup header */
+.panel-header button {
+    padding: 0.3em 0.8em;
+}
+.panel-header button:hover {
+    background-color: var(--gradBC-Q1);
+}
+
+/* style for buttons as a control element in the content (thus accentuated) */
+.button-control {
+    background-color: var(--gradBC-Q3);
+    border-radius: 3px;
+    color: var(--accent-color-light);
+}
+.button-control:hover {
+    background-color: var(--color-C);
+}
+.button-control:disabled {
+    background-color: var(--gradBC-Q1);
+    color: var(--gradBC-Q2);
+}
+
+/* styles for the information panel                                     */
+/* -------------------------------------------------------------------- */
+
+/* style of the div containing the feature info */
+#feature-info {
+    display: none;  /* hidden on load */
+}
+
+/* style for the div containing the image */
+#feature-info-img {
+    text-align: center;
+    min-height: 8em;
+    line-height: 8em;
+}
+
+/* styles for the categories  panel                                     */
+/* -------------------------------------------------------------------- */
+
+#cat-disabled-message {
+    display: none;  /* hidden on load */
+}
+
+/* style for disabled text of the categories panel */
+.disabled-text {
+    color: var(--gradBC-Q1);
+}
+
+/* styles for the routing panel                                         */
+/* -------------------------------------------------------------------- */
+
+/* style for the div containing all the controls to enter the routing parameters */
+#routing-controls {
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-basis: auto;
+}
+
+/* style for the div containing all the information of the calculated route */
+#route-info {
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: auto;
+    display: none;  /* hide it on load */
+    margin-top: 30px;
+}
+
+/* style of the slider visualising the percentages of walk, trot, and canter */
+#percentages-slider {
+    width: 100%;
+}
+
+/* styles for showing the percentage values of the speed types (walk, trot, canter) below the slider */
+#percentage-labels-container {
+    font-weight: bold;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+.percentage-labels {
+    width: 1.5em;
+    text-align: right;
+}
+
+/* -------------------------------------------------------------------- */
+/* R E S P O N S I V E   D E S I G N                                    */
+/* (rudimentary                                                         */
+/* -------------------------------------------------------------------- */
+
+/* style override for screens with width below 55em */
+@media screen and (max-width: 55em) {
+    /* have popup fill entire section area */
+    .popup {
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        max-width: none;
+    }
+
+    /* for the buttons in the header: show icon instead of the text */
+    header .fas {
+        display: inline-block;
+    }
+    header button span {
+        display: none;
+    }
+}
+
+/* style override for screens with height below 900px */
+@media screen and (max-height: 900px) {
+    /* for the tabs of the navigation bar: show icons only, i.e. without text */
+    #navbar button div {
+        display: none;
+    }
+    #navbar .fas {
+        vert-align: middle;
+    }
+}
