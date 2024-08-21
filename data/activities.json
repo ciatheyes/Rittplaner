@@ -11,8 +11,8 @@
       "type": "Feature",
       "properties": {
         "id": 1,
-        "name": "Baden in der Thur",
-        "description": "Insbesondere im Sommer ist eine Abkühlung im Fluss sehr willkommen. Die einen planschen gerne, andere liegen sogar ab. Idealerweise sollte das Wasser den Pferden bis über das Vorderfuss-Wurzelgelenk reichen.",
+        "name": "Baden in der Thur beim Feldisteg",
+        "description": "Kleiner Kiesstrand mit vergleichsweise wenig Badegästen. Insbesondere im Sommer ist eine Abkühlung im Fluss sehr willkommen. Die einen planschen gerne, andere liegen sogar ab. Idealerweise sollte das Wasser den Pferden bis über das Vorderfuss-Wurzelgelenk reichen.",
         "duration": 10,
         "categories": [
           "Trinkgelegenheit",
@@ -22,8 +22,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          8.804549654205827,
-          47.583435462112213
+          8.803325,
+          47.583692
         ]
       }
     },
@@ -355,6 +355,26 @@
         "coordinates": [
           8.763039,
           47.569378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 19,
+        "name": "Baden in der Thur beim Asperhof",
+        "description": "Grosser Kiesstrand mit insbesondere an heissen Sommertagen vielen Badegästen. Gerade an jenen Tagen ist eine Abkühlung im Fluss jedoch auch den Pferden sehr willkommen. Die einen planschen gerne, andere liegen sogar ab. Idealerweise sollte das Wasser den Pferden bis über das Vorderfuss-Wurzelgelenk reichen. Hat auch eine Wiese zum Grasen für längere Aufenthalte.",
+        "duration": 10,
+        "categories": [
+          "Trinkgelegenheit",
+          "Baden"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.745477,
+          47.591567
         ]
       }
     }

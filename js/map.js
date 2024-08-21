@@ -12,6 +12,8 @@
  * @date    05.11.2018
  */
 
+// define global variables
+var map;
 var selectionMode = false;
 var activityMarkers;
 var fannyhofMarker;
@@ -21,6 +23,10 @@ var directionsDisplay;
 var iconDefault;
 
 
+// call the function to initialise the map
+initMap();
+
+
 /**
  * Initialises the map and its functionalities using the Google Maps JavaScript API.
  * The map features a custom basemap, custom markers, and a customised marker clustering.
@@ -28,14 +34,20 @@ var iconDefault;
  *  - https://github.com/gmaps-marker-clusterer/gmaps-marker-clusterer
  *  - https://mono.software/2017/12/29/google-maps-marker-clustering
  */
-function initMap() {
+async function initMap() {
+    // IMPORT LIBRARIES
+    // ------------------------------------------------------------------------------
+    const { Map, Data } = await google.maps.importLibrary("maps");
+    const { Marker } = await google.maps.importLibrary("marker")
+    const { DirectionsService, DirectionsRenderer } = await google.maps.importLibrary("routes");
+
 
     // CREATE MAP
     // ------------------------------------------------------------------------------
 
     // define options of the base map
     var baseMapOptions = {
-        center: {lat: 47.574147, lng: 8.786615},
+        center: {lat: 47.578, lng: 8.788},
         zoom: 14,
         mapTypeId: 'satellite',
         streetViewControl: false,
@@ -190,10 +202,10 @@ function initMap() {
     };
 
     // create map
-    var map = new google.maps.Map(document.getElementById("map-canvas"), baseMapOptions);
+    map = new Map(document.getElementById("map-canvas"), baseMapOptions);
 
 
-    // load data and display it on the map
+    // LOAD DATA AND DISPLAY IT ON THE MAP
     // ------------------------------------------------------------------------------
 
     // define icons
@@ -223,7 +235,7 @@ function initMap() {
     };
 
     // instantiate fannyhof marker with click event listener
-    fannyhofMarker = new google.maps.Marker({
+    fannyhofMarker = new Marker({
         position: {
             lat: 47.574688886882399,
             lng: 8.780882283628209
@@ -267,11 +279,11 @@ function initMap() {
 
     // load activities data
     // NOTE: This uses cross-domain XHR, and may not work on older browsers.
-    var activitiesData = new google.maps.Data();
+    var activitiesData = new Data();
     activitiesData.loadGeoJson("data/activities.json", null, function (features) {
         activityMarkers = features.map(function (feature) {
             // create marker
-            var marker = new google.maps.Marker({
+            var marker = new Marker({
                 position: feature.getGeometry().get(0),
                 icon: iconDefault,
                 id: feature.getProperty('id'),
@@ -349,10 +361,10 @@ function initMap() {
     // ------------------------------------------------------------------------------
 
     // Instantiate a directions service
-    directionsService = new google.maps.DirectionsService;
+    directionsService = new DirectionsService;
 
     // Create a renderer for directions and bind it to the map
-    directionsDisplay = new google.maps.DirectionsRenderer({
+    directionsDisplay = new DirectionsRenderer({
         map: map,
         polylineOptions: {
             strokeColor: '#c13f11',
